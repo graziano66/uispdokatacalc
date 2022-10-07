@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-
 import 'package:uispdokatacalc/objects/point.dart';
 import 'package:uispdokatacalc/objects/button.dart';
 import 'package:uispdokatacalc/objects/button2.dart';
-import 'package:uispdokatacalc/ad_helper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,13 +25,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.title}) : super(key: key);
-
   final String? title;
-/*
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    return MobileAds.instance.initialize();
-  }
-*/
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -46,32 +37,12 @@ class _HomePageState extends State<HomePage> {
   List<Widget> cronologia = [];
   double pt = 0;
 
-  late BannerAd _ad;
 
 //  bool _isAdLoaded = false;
 
   @override
   void initState() {
     super.initState();
-
-    // COMPLETE: Create a BannerAd instance
-    _ad = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (Ad ad) => print('Ad loaded.'),
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          ad.dispose();
-          print('Ad load failed (code=${error.code} message=${error.message})');
-          print('Ad failed to load: $error');
-        },
-//        onAdOpened: (Ad ad) => print('Ad opened.'),
-//        onAdClosed: (Ad ad) => print('Ad closed.'),
-//        onAdImpression: (Ad ad) => print('Ad impression.'),
-      ),
-    );
-    _ad.load();
   }
 
   @override
@@ -241,13 +212,14 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 // BANNER PUBBLICITARIO
-
+/*
                 Container(
                   width: _ad.size.width.toDouble(),
                   height: 72.0,
                   alignment: Alignment.center,
                   child: AdWidget(ad: _ad),
                 ),
+*/
               ],
             ),
             Column(
